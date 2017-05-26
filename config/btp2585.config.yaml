@@ -1,0 +1,51 @@
+axis_linear: 1  # Left thumb stick vertical
+scale_linear: 0.7
+scale_linear_turbo: 1.5
+
+axis_angular: 0  # Left thumb stick horizontal
+scale_angular: 0.4
+
+enable_button: 2  # Left trigger button
+enable_turbo_button: 5  # Right trigger button
+
+# Add more parameters for control
+
+left_axis_x: 0
+left_axis_y: 1
+# left_axis_y is used for accelerating and decelerating
+right_axis_x: 2
+right_axis_y: 3
+# right_axis_x is used for rotating
+arrow_key_x: 4
+# arrow_key_x is used for cruising angular velocity
+arrow_key_y: 5
+# arrow_key_y is used for cruising velocity
+button_a: 0
+# botton_a is used for zero setting
+button_b: 1
+# botton_b is used for breaking
+button_x: 2
+# botton_x is used for reset the velocity expectation
+button_y: 3
+# botton_y is used for reset all settings
+left_bumper: 4
+# left_bumper is used for starting cruise
+right_bumper: 5
+# right_bumper is used for stopping cruise
+left_trigger: 6
+# left_trigger is used for turning into next mode
+right_trigger: 7
+# right_trigger is used for turning back to last mode
+back_button: 8
+# back_button is used for cutting off the control and parking
+start_button: 9
+# start_button is used fo beginning control
+
+max_vel: 0.25
+# the max velocity that the vehicle can achieve
+max_acc: 0.01
+# the max acceleration that the vehicle can achieve
+max_angular_vel: 2.1
+# the max angular velocity that the vehicle can achieve
+max_angular_acc: 0.1
+# the max angular acceleration that the vehicle can achieve
