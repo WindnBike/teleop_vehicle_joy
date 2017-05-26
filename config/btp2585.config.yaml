@@ -43,9 +43,13 @@ start_button: 9
 
 max_vel: 0.25
 # the max velocity that the vehicle can achieve
-max_acc: 0.01
+max_vel_acc: 0.01
 # the max acceleration that the vehicle can achieve
-max_angular_vel: 2.1
+max_ang: 2.1
 # the max angular velocity that the vehicle can achieve
-max_angular_acc: 0.1
+max_ang_acc: 0.1
 # the max angular acceleration that the vehicle can achieve
+vel_restore: 0.005
+# the acceleration back to cruise velocity or zero
+ang_restore: 0.5
+# the angular acceleration back to straight forward

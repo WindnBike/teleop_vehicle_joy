@@ -79,9 +79,11 @@ namespace teleop_vehicle_joy
          * value mapping definitions
          */
         std::map<std::string, double> max_vel_map;
-        std::map<std::string, double> max_acc_map;
-        std::map<std::string, double> max_angular_vel_map;
-        std::map<std::string, double> max_angular_acc_map;
+        std::map<std::string, double> max_vel_acc_map;
+        std::map<std::string, double> max_ang_map;
+        std::map<std::string, double> max_ang_acc_map;
+        std::map<std::string, double> vel_restore_map;
+        std::map<std::string, double> ang_restore_map;
 
         bool sent_disable_msg;
     };
