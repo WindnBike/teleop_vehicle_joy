@@ -41,6 +41,7 @@ namespace teleop_vehicle_joy
     private:
         struct Impl;
         Impl* pimpl_;
+        TeleVehicle* teleVehicle_;
     };
 
 }  // namespace teleop_vehicle_joy

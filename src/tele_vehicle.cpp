@@ -6,56 +6,62 @@
 
 namespace teleop_vehicle_joy {
 
-    int TeleVehicle::change_vel(const double vc) {
-        double vel = vstatus.velocity + vattrib.max_vel_acc * vc;
-        if (vc > 0) {
-            if (vel < vattrib.max_vel) vstatus.velocity = vel;
-            else vstatus.velocity = vattrib.max_vel;
+    int TeleVehicle::changeVal(Phy_val &phy_val, const double &vc) {
+        double val;
+        if (vc == 0) {
+            TeleVehicle::restoreVal(phy_val, phy_val.restore_val);
+        } else if (vc > 0) {
+            val = phy_val.value + phy_val.max_1st_dif * vc;
+            if (val < phy_val.max_val) phy_val.value = val;
+            else phy_val.value = phy_val.max_val;
         } else if (vc < 0) {
-            if (vel > 0 - vattrib.max_vel) vstatus.velocity = vel;
-            else vstatus.velocity = 0 - vattrib.max_vel;
-        }
-        return 0;
-    }
-    int TeleVehicle::change_ang(const double ac) {
-        double ang = vstatus.angular + vattrib.max_ang_acc * ac;
-        if (ac > 0) {
-            if (vel < vattrib.max_ang) vstatus.angular = vel;
-            else vstatus.angular = vattrib.max_ang;
-        } else if (ac < 0) {
-            if (vel > 0 - vattrib.max_ang) vstatus.angular = vel;
-            else vstatus.angular = 0 - vattrib.max_ang;
+            val = phy_val.value + phy_val.max_1st_rdif * vc;
+            if (val > phy_val.max_rval) phy_val.value = val;
+            else phy_val.value = phy_val.max_rval;
         }
         return 0;
     }
 
-    int TeleVehicle::changeVel(){
-        if (vstatus.velocity > 0) {
-            if (vstatus.velocity > vattrib.max_vel_acc) vstatus.velocity -= vattrib.max_vel_acc;
-            else vstatus.velocity = 0;
-        } else if (vstatus.velocity < 0) {
-            if (vstatus.velocity < 0 - vattrib.max_vel_acc) vstatus.velocity += vattrib.max_vel_acc;
-            else vstatus.velocity = 0;
+    int TeleVehicle::restoreVal(Phy_val &phy_val, const double &rv) {
+        if (phy_val.value > rv) {
+            if (phy_val.value > rv + phy_val.max_1st_dif) phy_val.value -= phy_val.max_1st_dif;
+            else phy_val.value = rv;
+        } else if (phy_val.value < rv) {
+            if (phy_val.value < rv + phy_val.max_1st_rdif) phy_val.value -= phy_val.max_1st_rdif;
+            else phy_val.value = rv;
         }
         return 0;
     }
 
-    int TeleVehicle::changeAng(){
-        if (vstatus.angular > 0) {
-            if (vstatus.angular > vattrib.max_vel_acc) vstatus.angular -= vattrib.max_ang_acc;
-            else vstatus.angular = 0;
-        } else if (vstatus.angular < 0) {
-            if (vstatus.angular < 0 - vattrib.max_vel_acc) vstatus.angular += vattrib.max_ang_acc;
-            else vstatus.angular = 0;
-        }
+    int TeleVehicle::changeVel(const double &vc) {
+        if (!changeVal(velocity, vc)) return 1;
         return 0;
     }
 
-    int TeleVehicle::restore(){
+    int TeleVehicle::changeAng(const double &vc) {
+        if (!changeVal(angular, vc)) return 1;
         return 0;
     }
 
-    int TeleVehicle::reset(){
+    int TeleVehicle::restoreVel() {
+        if (!restoreVal(velocity, velocity.restore_val)) return 1;
+        return 0;
+    }
+
+    int TeleVehicle::restoreAng() {
+        if (!restoreVal(angular, angular.restore_val)) return 1;
+        return 0;
+    }
+
+    int TeleVehicle::restore(bool vel, bool ang) {
+        if (vel) restoreVel();
+        if (ang) restoreAng();
+        return 0;
+    }
+
+    int TeleVehicle::reset() {
+        restoreVal(velocity, 0);
+        restoreVal(angular, 0);;
         return 0;
     }
 }  // namespace teleop_vehicle_joy

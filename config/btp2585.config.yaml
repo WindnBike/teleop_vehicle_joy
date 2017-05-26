@@ -1,14 +1,3 @@
-axis_linear: 1  # Left thumb stick vertical
-scale_linear: 0.7
-scale_linear_turbo: 1.5
-
-axis_angular: 0  # Left thumb stick horizontal
-scale_angular: 0.4
-
-enable_button: 2  # Left trigger button
-enable_turbo_button: 5  # Right trigger button
-
-# Add more parameters for control
 
 left_axis_x: 0
 left_axis_y: 1
@@ -45,11 +34,12 @@ max_vel: 0.25
 # the max velocity that the vehicle can achieve
 max_vel_acc: 0.01
 # the max acceleration that the vehicle can achieve
-max_ang: 2.1
-# the max angular velocity that the vehicle can achieve
-max_ang_acc: 0.1
-# the max angular acceleration that the vehicle can achieve
 vel_restore: 0.005
 # the acceleration back to cruise velocity or zero
+max_ang: 2.1
+# the max angular velocity that the vehicle can achieve
+max_ang_acc: 0.2
+# the max angular acceleration that the vehicle can achieve
 ang_restore: 0.5
 # the angular acceleration back to straight forward
+axis_range: 32768
